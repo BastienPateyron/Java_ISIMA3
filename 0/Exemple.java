@@ -1,4 +1,4 @@
-import java.io.*;
+// import java.io.*;
 
 public class Exemple {
    public static void main(String[] args) {
@@ -11,6 +11,7 @@ public class Exemple {
       for (int i = 0; i < 65536; i++) {
          s += "coucou";
       }
+      System.out.println((s.length()));
    }
 }
 
