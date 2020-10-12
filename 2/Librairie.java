@@ -20,9 +20,18 @@ public class Librairie {
    }
 
    public void afficher() {
+      // Afficher entête
+      String format = "%1$-25s%2$-20s%3$-8s%4$-25s%5$-8s%6$-12s\n";
+      System.out.format(format, "Titre", "Categorie", "Prix", "Date de parution", "Note", "Periodicite");
+      System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+      
+      // Affichage des livres
       for (Livre livre : livres) {
          System.out.println(livre);
       }
+
+      // Saut de ligne
+      System.out.println();
    }
 
    public void trier() {

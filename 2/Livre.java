@@ -17,12 +17,17 @@ public class Livre {
 
    @Override
    public String toString() {
+      
+      String format = "%1$-25s%2$-20s%3$-8s%4$-25s%5$-8s";
+      // System.out.format(format, "A", "AA", "AAA");
+
       return (
-         titre          + "\t" +
-         categorie      + "\t" +
-         prix           + "\t" +
-         dateParution   + "\t" +
-         note      
+         String.format(format, titre, categorie, prix, dateParution, note)
+         // titre          + "\t\t" +
+         // categorie      + "\t\t" +
+         // prix           + "\t\t" +
+         // dateParution   + "\t\t" +
+         // note      
       );
    }
 }
