@@ -11,5 +11,4 @@ public class Magazine extends Livre {
    public String toString() {
       return super.toString() + periodicite;
    }
-
 }
