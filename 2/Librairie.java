@@ -24,7 +24,7 @@ public class Librairie {
       // Afficher entête
       String format = "%1$-25s%2$-20s%3$-8s%4$-25s%5$-8s%6$-12s\n";
       System.out.format(format, "Titre", "Categorie", "Prix", "Date de parution", "Note", "Periodicite");
-      System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+      System.out.println("_________________________________________________________________________________________________");
       
       // Affichage des livres
       for (Livre livre : livres) {
@@ -38,7 +38,7 @@ public class Librairie {
    public <T> void afficher(Class<T> type) {
       String format = "%1$-25s%2$-20s%3$-8s%4$-25s%5$-8s%6$-12s\n";
       System.out.format(format, "Titre", "Categorie", "Prix", "Date de parution", "Note", "Periodicite");
-      System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+      System.out.println("_________________________________________________________________________________________________");
       
       for (Livre livre : livres) {
          // if ( !(livre instanceof t) ) { System.out.println("Livre");}
