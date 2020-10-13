@@ -9,7 +9,6 @@ public class Magazine extends Livre {
 
    @Override
    public String toString() {
-      return super.toString() + "\t" + periodicite;
+      return super.toString() + periodicite;
    }
-
 }
