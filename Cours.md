@@ -195,23 +195,67 @@ try {
 }
 
 ```
+----
+----
 
 
+# Tests
+
+Le plus dur, c'est d'écrire du code **testable**.
+Il vaut mieux faire **plein de méthodes** pour segmenter mon code.
+
+## Types de test
+Test Unitaire: test qu'une seule classe
+| Test | Définition |
+| --- | ------|
+| Unitaire | Test qu'une seule classe
+| Fonctionnel | Plusieurs classes en même temps ~ blocs de code
+| Intégration | Check si le programme fonctionne avec un autre produit
+| Performance | Test la rapidité
+| Charge | Test avec un certain nombre d'utilisateurs
+| Smoke | Jusqu'à un problème apparaisse (sur la BDD ou le compute par ex)
+| Client-Simulé | Simule les intéractions utilisateur
+
+## TDD
+1. Ecrire les signatures
+2. Ecrire les tests
+3. Ecrire le code
+4. Valider les tests
+5. S'arrêter dès que ça marche
+
+## Intégration continue
+Lance les tests à chaque modification sur le dépôt
+Renvoie un Feedback (mail, sms, allume une lampe...)
+
+## Classe de Mock
+Classe qui simule un comportement externe (BDD, Réseau, Fichier) de manière contrôlée. Très utile pour du test unitaire.
+
+## Couverture de code
+On vise 50 à 70 %
+On essaie de tester uniquement les choses utiles et risquées
+
+En Java:
+* EMMA
+* Jacoco
 
 
+## JUnit
+### Ecriture du test
+```java
+assertTrue(valeur)
+assertEquals(valeur1,valeur2)
+assertNull(valeur)
+```
 
+### Compilation des tests
+```java
+javac -cp . :junit -4. XX.jar CalculatorTest . java
+```
 
-Here's a simple footnote,[^1] and here's a longer one.[^bignote]
-
-[^1]: This is the first footnote.
-
-[^bignote]: Here's one with multiple paragraphs and code.
-
-    Indent paragraphs to include them in the footnote.
-
-    `{ my code }`
-
-    Add as many paragraphs as you like.
+### Exécution des tests
+```java
+java -cp .:junit -4. XX.jar org. junit . runner . JUnitCore CalculatorTest
+```
 
 
 
