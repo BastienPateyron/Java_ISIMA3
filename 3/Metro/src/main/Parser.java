@@ -1,13 +1,10 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import org.junit.platform.console.shadow.picocli.CommandLine.ExitCode;
 
 public class Parser {
 
@@ -31,9 +28,7 @@ public class Parser {
       try {
          line = bufferedReader.readLine();
       } catch (IOException e) {
-         // Passer à la ligne suivante
          System.out.println(e.getMessage());
-         // line = "Error";
       }
 
       return line;
