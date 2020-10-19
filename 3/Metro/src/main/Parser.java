@@ -1,10 +1,13 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.junit.platform.console.shadow.picocli.CommandLine.ExitCode;
 
 public class Parser {
 
@@ -12,6 +15,9 @@ public class Parser {
    private FileReader fileReader;
    private BufferedReader bufferedReader;
 
+   public Parser() {
+
+   }
    
    public void openFile(String filename) throws FileNotFoundException {
       this.filename = filename;
@@ -24,45 +30,69 @@ public class Parser {
       
       try {
          line = bufferedReader.readLine();
-         System.out.println(line);
       } catch (IOException e) {
          // Passer à la ligne suivante
          System.out.println(e.getMessage());
-         line = "Error";
+         // line = "Error";
       }
 
       return line;
    }
 
    public MetroStop parseLine() {
-      MetroStop metroStop = null;
+      MetroStop metroStop;
+
       String line = readLine();
 
-      // TODO Parsing
-      String[] properties = line.split("#");
-      for(String s : properties) {
-         System.out.println(s.toString());
+      if(line != null) {
+         String[] properties = line.split("#");
+   
+         metroStop = new MetroStop(
+            Integer.parseInt(properties[0]),
+            Double.parseDouble(properties[1]),
+            Double.parseDouble(properties[2]),
+            properties[3],
+            properties[4],
+            properties[5]
+         );
+      } else {
+         metroStop = null;
       }
-
-      metroStop = new MetroStop(
-         Integer.parseInt(properties[0]),
-         Double.parseDouble(properties[1]),
-         Double.parseDouble(properties[2]),
-         properties[3],
-         properties[4],
-         properties[5]
-      );
 
       return metroStop;
    }
 
-   public ArrayList<MetroStop> parseFile(String filename) {
+   public ArrayList<MetroStop> parseFile() {
 
       ArrayList<MetroStop> stopList = new ArrayList<>();
       
-      // TODO
+      MetroStop metroStop;
+
+      while( (metroStop = parseLine()) != null) {
+         stopList.add(metroStop);
+      }
+
+      // Réinitialisation des variables
+      try {
+         bufferedReader.close();
+      } catch (IOException e) {
+         System.out.println(e.getMessage());
+      }
+      bufferedReader = null;
+      filename = null;
+      fileReader = null;
 
       return stopList;
+   }
+
+   public ArrayList<MetroStop> parseFile(String filename) {
+      try {
+         openFile(filename);
+      } catch (FileNotFoundException e) {
+         System.out.println(e.getMessage());
+      }
+
+      return parseFile();
    }
 
    public String getFilename() {
@@ -71,6 +101,22 @@ public class Parser {
 
    public void setFilename(String filename) {
       this.filename = filename;
+   }
+
+   public FileReader getFileReader() {
+      return fileReader;
+   }
+
+   public void setFileReader(FileReader fileReader) {
+      this.fileReader = fileReader;
+   }
+
+   public BufferedReader getBufferedReader() {
+      return bufferedReader;
+   }
+
+   public void setBufferedReader(BufferedReader bufferedReader) {
+      this.bufferedReader = bufferedReader;
    }
 
 }

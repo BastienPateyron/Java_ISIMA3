@@ -1,9 +1,13 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +15,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.JUnitException;
 
-import main.Parser;
 import main.MetroStop;
+import main.Parser;
 
 public class ParserTest {
 
@@ -45,27 +49,20 @@ public class ParserTest {
    @Test
    public void testOpenFileCorrect() {
       assertEquals(monParser.getFilename(), ratp_file);
+      assertNotNull(monParser.getBufferedReader());
+      assertNotNull(monParser.getFileReader());
    }
 
    @Test
-   @Disabled
    public void testOpenFileEmpty() {
       try {
          monParser.openFile(empty_file);
-         // TODO: Assertion sur ... ?
-
+         ArrayList<MetroStop> a = new ArrayList<>();
+         assertEquals(a.toString(), monParser.parseFile().toString());
       } catch (Exception e) {
          throw new JUnitException(e.getMessage());
       }
       
-   }
-
-   @Test
-   @Disabled
-   public void testOpenFileBadFormat() {
-
-
-   
    }
 
    @Test
@@ -87,14 +84,30 @@ public class ParserTest {
       MetroStop secondParsed = monParser.parseLine();
       assertEquals(secondParsed, secondArret);
 
-      // Tester une ligne mal formatée
+      // TODO: Tester une ligne mal formatée
    }
 
    @Test
    public void testParseFile() {
-      // Tester le nombre de lignes
+      ArrayList<MetroStop> metroStopList = monParser.parseFile();
 
-      // Tester les erreurs de formatage
+      // Tester le nombre de lignes
+      assertEquals(12012, metroStopList.size());
+      
+      // Tester le premier élément
+      MetroStop premierArret = new MetroStop(1975, 2.33871281165883, 48.8844176451841, "Abbesses", "PARIS-18EME", "metro");
+      MetroStop premierParsed = metroStopList.get(0);
+      assertEquals(premierParsed, premierArret);
+      
+      // Tester le dernier élément
+      MetroStop dernierArret = new MetroStop(445422, 2.23014400439772, 48.9137080056912, "VICTOR BASCH", "COLOMBES", "tram");
+      MetroStop dernierParsed = metroStopList.get(metroStopList.size() -1);
+      assertEquals(dernierParsed, dernierArret);
+
+      // Tester la réinitialisation des variables
+      assertNull(monParser.getBufferedReader());
+      assertNull(monParser.getFileReader());
+      assertNull(monParser.getFilename());
    }
 
 }
