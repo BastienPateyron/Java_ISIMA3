@@ -1,6 +1,10 @@
 {
    "java.project.referencedLibraries": [
-      "lib/**/*.jar",
-      "Metro/lib/junit-4.13.1.jar"
-   ]
+      "Metro/lib/**/*.jar",
+   ],
+   "java.dependency.packagePresentation": "hierarchical",
+   "java.test.config": {
+      "name":"MetroTesting",
+      "workingDirectory": "${workspaceFolder}",
+   }
 }

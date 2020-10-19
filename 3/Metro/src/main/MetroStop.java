@@ -30,23 +30,6 @@ public class MetroStop {
         );
     }
 
-    // Format identique au CSV
-    // @Override
-    // public String toString() {
-    //     // String format = "%1$-25s%2$-20s%3$-8s%4$-25s%5$-8s";
-    //     // return (String.format(format, titre, categorie, prix, dateParution, note));
-
-    //     return (
-    //         id              + "\t" +
-    //         longitude       + "\t" +
-    //         latitude        + "\t" +
-    //         nom             + "\t" +
-    //         arrondissement  + "\t" +
-    //         type            + "\t" +
-    //     );
-    // }
-
-
     /* Le Code restant ci-dessous a été généré automatiquement via IDE */
 
     // Accesseurs //
@@ -148,6 +131,5 @@ public class MetroStop {
             return false;
         return true;
     }
-
 
 }

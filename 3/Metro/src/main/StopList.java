@@ -14,22 +14,21 @@ public class StopList {
    public void add(MetroStop metroStop) {
       stopList.add(metroStop);
    }
+   
+      @Override
+      public String toString() {
+         StringBuilder resultat = new StringBuilder("");
+   
+         for (MetroStop metroStop : stopList) {
+            resultat.append(metroStop.toString()).append('\n');
+         };
+   
+         return resultat.toString();
+      }
 
-   // Charge les dans l'attribut 'stopList' les arrêts présents dans le fichier fourni
+   // Charge dans l'attribut 'stopList' les arrêts présents dans le fichier fourni
    public void loadFile(String filename) {
 
-   }
-
-   @Override
-   public String toString() {
-      StringBuilder resultat = new StringBuilder("");
-      
-      for (MetroStop metroStop : stopList) {
-         resultat.append(metroStop.toString()).append('\n');
-      };
-
-      return resultat.toString();
-      
    }
 
 
