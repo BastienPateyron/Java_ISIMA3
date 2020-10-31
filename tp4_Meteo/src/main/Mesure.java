@@ -1,13 +1,23 @@
 package main;
 
-import com.google.gson.annotations.SerializedName;
+public class Mesure {
 
-// @SerializedName("ok")
-// public class Mesure {
-//    @SerializedName("id")
-//    private int mId;
-//    @SerializedName("nom ")
-//    private String mNom;
-//    @SerializedName(" prenom ")
-//    private String mPrenom;
-// }
+   private Main main;
+
+   private class Main {
+
+      private double temp;
+      private double temp_max;
+      private double temp_min;
+      private double humidity;
+
+      @Override
+      public String toString() {
+         return "humidity=" + humidity + ", temp=" + temp + ", temp_max=" + temp_max + ", temp_min=" + temp_min;
+      }
+   }
+
+   public String toString() {
+      return main.toString();
+   }
+}

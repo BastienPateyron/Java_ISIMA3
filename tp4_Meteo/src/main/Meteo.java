@@ -8,11 +8,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.*;
+
+
 public class Meteo {
+   
+   final Gson gson = new GsonBuilder().setLenient().create();
 
    public String requete(String ville) {
 
       String response = "";
+      Mesure maMesure = null;
 
       HttpURLConnection urlConnection = null;
       try {
@@ -21,8 +28,11 @@ public class Meteo {
                ville +
                "&units=metric&appid=fdec5664d19caf22895d3aaf207d3d43");
          urlConnection = (HttpURLConnection) url.openConnection();
-         // InputStream in = new BufferedInputStream(urlConnection.getInputStream());
          response = readStream(urlConnection.getInputStream());
+
+         // System.out.println(response);
+             
+         maMesure = gson.fromJson(response, Mesure.class);
       } catch (IOException e) {
          System.out.println("Erreur dans la requete: " + e.getMessage());
       } finally {
@@ -30,7 +40,8 @@ public class Meteo {
             urlConnection.disconnect();
          }
       }
-      return response;
+
+      return maMesure.toString();
    }
 
    public String requete() {
@@ -42,14 +53,11 @@ public class Meteo {
 
       String line = null;
       StringBuilder text = new StringBuilder();
-
-      
+    
       try {
          while ((line = bufferedReader.readLine()) != null) {
             text.append(line);
-            // System.out.println(line);
          }
-   
          bufferedReader.close();
       } catch (IOException e) {
          System.out.println(e.getMessage());
