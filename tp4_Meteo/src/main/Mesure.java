@@ -1,15 +1,22 @@
 package main;
 
+
+/**
+ * Classe pour parser la réponse de l'API
+ */
 public class Mesure {
 
-   private Main main;
+   public Main main;
 
-   private class Main {
+   /**
+    * Sous classe pour parser la rubrique 'main' de la réponse de l'API
+    */
+   public class Main {
 
-      private double temp;
-      private double temp_max;
-      private double temp_min;
-      private double humidity;
+      public double temp;
+      public double temp_max;
+      public double temp_min;
+      public double humidity;
 
       @Override
       public String toString() {
