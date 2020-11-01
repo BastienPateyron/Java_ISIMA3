@@ -1,9 +1,11 @@
 package main;
 
+import org.hamcrest.core.IsNot;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Meteo maMeteo = new Meteo();
-        System.out.println(maMeteo.request(args[0]));
+        String ville = args.length == 1 ? args[0] : "Clermont-Ferrand";
+        System.out.println(maMeteo.request(ville));
     }
 }

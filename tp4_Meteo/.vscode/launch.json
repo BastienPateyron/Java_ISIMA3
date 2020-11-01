@@ -16,7 +16,7 @@
          "request": "launch",
          "mainClass": "main.App",
          "projectName": "tp4_Meteo_a3d43abf",
-         "args": ["Clermont-Ferrand"]
+         "args": ["azertyuio"]
       }
    ]
 }

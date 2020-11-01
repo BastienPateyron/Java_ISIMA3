@@ -59,6 +59,7 @@ public class MeteoTest {
    public void gsonMockTest() {
       String response = maMeteo.readStream(mockFileInputStream);
       Mesure maMesure =  gson.fromJson(response, Mesure.class);    
+      assertEquals(maMesure.name, "Arrondissement de Clermont-Ferrand");
       assertEquals(maMesure.main.temp, 23);
       assertEquals(maMesure.main.temp_max, 23);
       assertEquals(maMesure.main.temp_min, 23);
