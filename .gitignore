@@ -1,3 +1,6 @@
 *.class
 /.metadata/
-/lib
+/test
+
+meteo.py
+tp4_Meteo/response_prettyfied.json

@@ -258,5 +258,23 @@ java -cp .:junit -4. XX.jar org. junit . runner . JUnitCore CalculatorTest
 ```
 
 
+# Entrées / Sorties 
+
+## Types de flux
+| InputStream | Flux d'entrée primitif |
+|-------------|------------------------|
+| OutputStream | Flux de sortie primitif |
+| DataInputStream | Manipulation de types primitifs |
+| ObjectInputStream | Manipulation d'objets (sérialisés) |
+| FileInputStream | Manipulation de flux binaire |
+| FileReader | Manipulation de fichier texte |
+| GZIPInput/OutputStream | Manipulation de fichiers compressés (ZIP) |
+
+# HTTP
+HttpURLConnection: Slide 36
+...
+
+# String Builder: J'ai pas compris l'intérêt
+
 
 

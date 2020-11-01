@@ -1,6 +1,0 @@
-{
-   "java.project.referencedLibraries": [
-      "lib/**/*.jar",
-      "Metro/lib/junit-4.13.1.jar"
-   ]
-}

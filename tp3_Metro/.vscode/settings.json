@@ -1,0 +1,10 @@
+{
+   "java.project.referencedLibraries": [
+      "Metro/lib/**/*.jar",
+   ],
+   "java.dependency.packagePresentation": "hierarchical",
+   "java.test.config": {
+      "name":"MetroTesting",
+      "workingDirectory": "${workspaceFolder}",
+   }
+}
