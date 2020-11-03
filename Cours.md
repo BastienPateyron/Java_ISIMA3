@@ -277,4 +277,16 @@ HttpURLConnection: Slide 36
 # String Builder: J'ai pas compris l'intérêt
 
 
+# Introspection
+La capacité pour un objet de regarder la strucutre de sa classe (et éventuellement la modifier)
+
+## Méthodes
+getMethods(): Toutes les méthodes publiques
+getDeclaredMethods(): Toutes les méthodes (publiques, privées, protectected …)
+
+## Invoque
+Permet d'invoquer une méthode
+```java
+maMethode.invoke(objetCible, mesArguments[]); // objetCible = Null si statique
+```
 
