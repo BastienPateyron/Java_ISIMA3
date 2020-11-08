@@ -2,35 +2,52 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 public class ParsedMethod extends ClassParser {
-   public String params = null;
+   public String params = "";
 
-   public ParsedMethod(Method method)  {
+   public ParsedMethod(Method method) {
       super(method);
-      type = method.getReturnType().toString();
-      params = method.getParameterTypes().toString();
+      type = method.getReturnType().getSimpleName();
+      for (Class p : method.getParameterTypes())
+         params += p.getSimpleName() + ", ";
+      if (params.equals("") == false)
+         params = params.substring(0, params.length() - 2);
    }
 
-   public ParsedMethod(Constructor constructor)  {
+   public ParsedMethod(Constructor constructor) {
       super(constructor);
-      params = constructor.getParameterTypes().toString();
+      for (Class p : constructor.getParameterTypes())
+         params += p.getSimpleName() + ", ";
+      if (params.equals("") == false)
+         params = params.substring(0, params.length() - 2);
    }
 
-
-   public String toString() {
-      StringBuilder s = new StringBuilder();
-      s.append(params);
-      return s.toString();
-   }
+   // public String toString() {
+   //    // StringBuilder s = new StringBuilder();
+   //    // s.append(params);
+   //    // return s.toString();
+   // }
 
    public String toHpp() {
-      return modifiers + " " + type + " " + name;
+      StringBuilder s = new StringBuilder();
+      s.append(type).append(' ')
+       .append(name).append('(')
+       .append(params).append(");");
+
+      return s.toString().trim();
    }
-   
+
    public String toCpp(String className) {
       StringBuilder s = new StringBuilder();
-      s.append(portee).append(' ').append(type).append(' ').append(className).append("::").append(name).append('(');
-      // TODO: append params
-      return s.toString();
+      s.append(type).append(' ')
+       .append(className).append("::")
+       .append(name).append('(')
+       .append(params).append(')');
+       
+       // TODO: Modifier params dans le Cpp pour qu'il ajoute des noms aux arguments
+       // TODO: Rajouter les parenthses et un return du type souhaité
+
+
+      return s.toString().trim();
    }
 
    public Boolean isPrivate() {

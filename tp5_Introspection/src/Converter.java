@@ -49,12 +49,12 @@ public class Converter {
 
       System.out.println("-- Fields --");
       for (Field f : fields) parsedFieldList.add(new ParsedField(f));
-      for(ParsedField f : parsedFieldList) System.out.println(f.toHpp());
+      for (ParsedField f : parsedFieldList) System.out.println(f.toHpp());
       
       System.out.println("-- Methods --");
       for (Constructor c : constructors) parsedMethodList.add(new ParsedMethod(c)); 
       for (Method m : methods) parsedMethodList.add(new ParsedMethod(m));
-      for(ParsedMethod m : parsedMethodList) System.out.println(m.toHpp());
+      for (ParsedMethod m : parsedMethodList) System.out.println(m.toHpp() + '\t' + m.toCpp(cppClassName));
       
       // Parcourir les imports
    }

@@ -21,16 +21,14 @@ public class ClassParser {
    }
 
    public String toString() {
-      return portee + " " + modifiers + " " + type + " " + name;
+      return (portee + " " + modifiers + " " + type + " " + name).trim();
    }
 
    public String toHpp() {
-      return modifiers + " " + type + " " + name;
+      return (modifiers + " " + type + " " + name).trim();
    }
 
    public Boolean isPrivate() {
       return portee.equals("private");
    }
-
-
 }

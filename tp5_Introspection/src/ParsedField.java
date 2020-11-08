@@ -17,10 +17,4 @@ public class ParsedField extends ClassParser{
    //    String cpp_type = type.equals("String") ? "std::string" : type;
    //    return modifiers + " " + cpp_type + " " + name;
    // }
-
-   public Boolean isPrivate() {
-      return portee.equals("private");
-   }
-
-
 }
