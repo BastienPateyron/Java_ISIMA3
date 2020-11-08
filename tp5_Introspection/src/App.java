@@ -1,8 +1,3 @@
-package Introspection;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class App 
 {
     static String javaClassName = "";
@@ -11,13 +6,13 @@ public class App
     
     public static void main( String[] args )
     {        
-        App.argParse(args);
-        System.out.println(javaClassName + " " + cppClassName + " " + flagStdout);
-
-        Converter converter = new Converter(javaClassName, javaClassName);
-        converter.convert();
-        converter.toString();
-        
+        if (App.argParse(args)) {   // Vérification de la présence d'un argument
+            System.out.println(javaClassName + " " + cppClassName + " " + flagStdout);
+    
+            Converter converter = new Converter(javaClassName, javaClassName);
+            converter.convert();
+            converter.toString();
+        }
 
     }
 
@@ -26,7 +21,8 @@ public class App
      * Gère les arguments passés au programme
      * @param args
      */
-    static void argParse(String[] args) {
+    static Boolean argParse(String[] args) {
+
         if (args.length > 0) {
             javaClassName = cppClassName = args[0];
 
@@ -41,8 +37,10 @@ public class App
                     flagStdout = true;
                 }
             } 
+            return true;
         } else {
-            System.out.println("Please use at least one argument to specify the java class name");
+            System.out.println("Please use at least one argument to specify the java class name. End of the program");
+            return false;
         }
     }
 }

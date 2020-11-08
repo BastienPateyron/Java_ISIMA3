@@ -1,10 +1,17 @@
-public class Personne {
+public class PersonneExemple {
     private String nom;
-    private String prenom;
+    public String prenom;
 
-    public Personne (String nom, String prenom) {
+    static private Boolean test;
+
+    public PersonneExemple(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    public PersonneExemple() {
+        prenom = "John";
+        nom = "Doe";
     }
 
     public String toString() {
