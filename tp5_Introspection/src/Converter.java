@@ -83,4 +83,13 @@ public class Converter {
       // TODO
    }
 
+   /**
+    * Remplace toutes les occurences de la classe "Boolean" par "bool" dans
+    * le contenu de hppContent et cppContent
+    */
+    public void boolReplace() {
+
+      // TODO
+   }
+
 }
