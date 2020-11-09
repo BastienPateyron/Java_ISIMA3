@@ -11,7 +11,7 @@ public class App
     
             Converter converter = new Converter(javaClassName, javaClassName);
             converter.convert();
-            converter.toString();
+            converter.writeFiles();
         }
 
     }

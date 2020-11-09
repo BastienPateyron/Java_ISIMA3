@@ -33,7 +33,7 @@ public class ParsedMethod extends ClassParser {
       s.append(type).append(' ').append(name).append('(');
 
       for (int i = 0; i < param_list.size(); i++) {
-         s.append(param_list.get(i));
+         s.append(param_list.get(i)).append(' ');
          if (i < param_list.size() - 1) {
             s.append(", ");
          }
@@ -65,7 +65,7 @@ public class ParsedMethod extends ClassParser {
          if (type.equals("int") || type.equals("float") || type.equals("double"))
             s.append("0");
          if (type.equals("Boolean"))
-            s.append("False");
+            s.append("false");
          if (type.equals("String"))
             s.append("\"Text\"");
 
