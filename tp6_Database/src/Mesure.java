@@ -15,7 +15,6 @@ public class Mesure {
       public double temp_max;
       public double temp_min;
       public double humidity;
-      public String name;
 
 
       @Override

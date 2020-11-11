@@ -35,9 +35,26 @@ public class Bdd {
       String initQuery = "CREATE TABLE IF NOT EXISTS Mesures (id INTEGER PRIMARY KEY AUTOINCREMENT, ville TEXT, humidity REAL, temp REAL, temp_max REAL, temp_min REAL);";
       
       try {
-         Statement stmt = connection.createStatement(); 
-         stmt.execute(initQuery);
+         Statement st = connection.createStatement(); 
+         st.execute(initQuery);
       } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void insertMesure(Mesure maMesure) {
+      StringBuilder query = new StringBuilder();
+      query.append("INSERT INTO Mesures (ville, humidity, temp, temp_max, temp_min) VALUES(\"");
+      query.append(maMesure.name + "\", ");
+      query.append(maMesure.main.humidity + ", ");
+      query.append(maMesure.main.temp + ", ");
+      query.append(maMesure.main.temp_max + ", ");
+      query.append(maMesure.main.temp_min + ");");
+
+      try {
+         Statement st = connection.createStatement();
+         st.executeUpdate(query.toString());
+      } catch (Exception e) {
          e.printStackTrace();
       }
    }

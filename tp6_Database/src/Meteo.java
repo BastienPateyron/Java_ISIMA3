@@ -18,7 +18,7 @@ public class Meteo {
     * @param ville Nom de la ville ciblée par la requête
     * @return toString de la réponse parsée de l'API
     */
-   public String request(String ville) {
+   public Mesure request(String ville) {
 
       String response = "";
       Mesure maMesure = null;
@@ -33,7 +33,8 @@ public class Meteo {
          // System.out.println(response);
          if (urlConnection.getResponseCode() == 404) {
             response = readStream(urlConnection.getErrorStream());
-            return response; 
+            // return response; 
+            System.out.println(response);            
          } else {
             response = readStream(urlConnection.getInputStream());
             maMesure = gson.fromJson(response, Mesure.class);
@@ -47,13 +48,13 @@ public class Meteo {
          }
       }
 
-      return maMesure.toString();
+      return maMesure;
    }
 
    /**
     * Surcharge qui passe Clermont-Ferrand par défaut
     */
-   public String request() {
+   public Mesure request() {
       return request("Clermont-Ferrand");
    }
 
