@@ -7,7 +7,7 @@ public class App {
         String ville = args.length == 1 ? args[0] : "Clermont-Ferrand";
 
         Mesure maMesure = maMeteo.request(ville);
-        // Mesure maMesure = maMeteo.request("Lyon");
+        // Mesure maMesure = maMeteo.request("Marseille");
         // System.out.println(maMesure.toString());
         // db.insertMesure(maMesure);
         ArrayList<Mesure> mesureList = db.getAllMesures();

@@ -43,6 +43,9 @@ public class Bdd {
       }
    }
 
+   /**
+    * Insert la mesure passée en argument dans la bdd
+    */
    public void insertMesure(Mesure maMesure) {
       StringBuilder query = new StringBuilder();
       query.append("INSERT INTO Mesures (ville, humidity, temp, temp_max, temp_min) VALUES(\"");
@@ -54,12 +57,17 @@ public class Bdd {
 
       try {
          Statement st = connection.createStatement();
-         st.executeUpdate(query.toString());
+         int nb = st.executeUpdate(query.toString());
+         System.out.println(nb + " ligne insérée.");
       } catch (Exception e) {
          e.printStackTrace();
       }
    }
 
+   /**
+    * Récupère l'ensemble des mesures présentes en base
+    * @return Collection d'objets Mesures parsés depuis le résultat de la requête
+    */
    public ArrayList<Mesure> getAllMesures() {
       ArrayList<Mesure> mesureList = new ArrayList<>();
       String query = "SELECT * FROM Mesures;";
