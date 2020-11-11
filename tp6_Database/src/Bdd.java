@@ -70,7 +70,7 @@ public class Bdd {
     */
    public ArrayList<Mesure> getAllMesures() {
       ArrayList<Mesure> mesureList = new ArrayList<>();
-      String query = "SELECT * FROM Mesures;";
+      String query = "SELECT * FROM Mesures ORDER BY ville, temp;";
 
       try {
          Statement st = connection.createStatement();

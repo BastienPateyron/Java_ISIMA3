@@ -6,10 +6,10 @@ public class App {
         Bdd db = new Bdd("database.sqlite");
         String ville = args.length == 1 ? args[0] : "Clermont-Ferrand";
 
-        Mesure maMesure = maMeteo.request(ville);
-        // Mesure maMesure = maMeteo.request("Marseille");
+        // Mesure maMesure = maMeteo.request(ville);
+        Mesure maMesure = maMeteo.request("New York");
         // System.out.println(maMesure.toString());
-        // db.insertMesure(maMesure);
+        db.insertMesure(maMesure);
         ArrayList<Mesure> mesureList = db.getAllMesures();
 
         for(Mesure m : mesureList) {
