@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Bdd {
    
@@ -57,5 +58,28 @@ public class Bdd {
       } catch (Exception e) {
          e.printStackTrace();
       }
+   }
+
+   public ArrayList<Mesure> getAllMesures() {
+      ArrayList<Mesure> mesureList = new ArrayList<>();
+      String query = "SELECT * FROM Mesures;";
+
+      try {
+         Statement st = connection.createStatement();
+         ResultSet rs = st.executeQuery(query);
+         while (rs.next()) {
+            mesureList.add(new Mesure(
+               rs.getString(2),
+               rs.getDouble(4),
+               rs.getDouble(5),
+               rs.getDouble(6),
+               rs.getDouble(3)
+            ));
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      return mesureList;
    }
 }
