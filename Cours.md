@@ -281,8 +281,12 @@ HttpURLConnection: Slide 36
 La capacité pour un objet de regarder la strucutre de sa classe (et éventuellement la modifier)
 
 ## Méthodes
-getMethods(): Toutes les méthodes publiques
-getDeclaredMethods(): Toutes les méthodes (publiques, privées, protectected …)
+``` java
+javaClass = Class.forName(javaClassName)  // Récupère un objet Class à partir de son nom
+getMethods()                              // Toutes les méthodes publiques
+getDeclaredMethods()                      // Toutes les méthodes (publiques, privées, protectected …)
+```
+
 
 ## Invoque
 Permet d'invoquer une méthode
@@ -290,3 +294,43 @@ Permet d'invoquer une méthode
 maMethode.invoke(objetCible, mesArguments[]); // objetCible = Null si statique
 ```
 
+
+
+# Bases de données
+## Classes essentielles
+   - driver
+   - connection
+   - statement
+   - resultset
+
+## SetUp
+```java
+Class.forName(com.mysql.jdbc.Driver)   // Charger le pilote JDBC-ODBC pour MySQL
+```
+
+## Utilisation
+```java
+executeQuery()          // Adapté pour un Select
+executeUpdate()         // Adapté pour un Insert / Update
+monResultSet.wasNull()  // Test si on a la valeur "Null" sur le dernier get effectué sur notre ResultSet
+```
+
+## PreparedStatement
+```java
+maConnexion.prepareStatement(    // Permet de préparer la requête à recevoir un name
+   "SELECT * FROM Clients "
+   + "WHERE name = ?"
+)
+
+ps.setString(1, "Jack");         // Spécifie un name à la requête dans le 1er Champ paramétré
+ps.executeUpdate();
+```
+
+## Metadonnées d'une BDD
+```java
+resultSet = maConnexion.getMetaData().getTables(null, null, "\%", types)
+while (rs. next ()) {
+   nomTable = rs. getString (3);
+   listTables.add( nomTable );
+}
+```

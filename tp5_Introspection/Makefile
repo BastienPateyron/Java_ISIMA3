@@ -1,13 +1,11 @@
+# Compile le Java
 make-java:
 	javac *.java
-	
+
+# Exécute la conversion
 run-java:
-	java App
+	java App PersonneExemple
 	
+# Compile le C++
 make-cpp:
 	g++ *.cpp -o cpp.exe
-
-
-make-java pour compiler le programme java
-run-java pour lancer la conversion Java vers C++
-make-cpp pour compiler le code C++ generé

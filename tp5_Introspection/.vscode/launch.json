@@ -10,7 +10,6 @@
          "request": "launch",
          "mainClass": "App",
          "projectName": "tp5_Introspection_7db5e035",
-         // "args": ["PersonneExemple"]
          "args": ["PersonneExemple"]
       }
    ]

@@ -22,12 +22,6 @@ public class ParsedMethod extends ClassParser {
       }
    }
 
-   // public String toString() {
-   // // StringBuilder s = new StringBuilder();
-   // // s.append(params);
-   // // return s.toString();
-   // }
-
    public String toHpp() {
       StringBuilder s = new StringBuilder();
       s.append(type).append(' ').append(name).append('(');
@@ -74,14 +68,6 @@ public class ParsedMethod extends ClassParser {
 
       s.append("}");
 
-      // TODO: Modifier params dans le Cpp pour qu'il ajoute des noms aux arguments
-      // TODO: Rajouter les parenthses et un return du type souhaité
-
       return s.toString().trim();
    }
-
-   public Boolean isPrivate() {
-      return portee.equals("private");
-   }
-
 }

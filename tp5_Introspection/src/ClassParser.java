@@ -27,8 +27,4 @@ public class ClassParser {
    public String toHpp() {
       return (modifiers + " " + type + " " + name + ";").trim();
    }
-
-   public Boolean isPrivate() {
-      return portee.equals("private");
-   }
 }

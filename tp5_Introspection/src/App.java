@@ -13,9 +13,7 @@ public class App
             converter.convert();
             converter.writeFiles();
         }
-
     }
-
 
     /**
      * Gère les arguments passés au programme

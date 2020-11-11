@@ -51,21 +51,16 @@ public class Converter {
          System.out.println(e.getMessage());
       }
 
-      System.out.println("-- Fields --");
       for (Field f : fields) parsedFieldList.add(new ParsedField(f));
-      // for (ParsedField f : parsedFieldList) System.out.println(f.toHpp());
-      
-      System.out.println("-- Methods --");
+
       for (Constructor c : constructors) parsedMethodList.add(new ParsedMethod(c)); 
       for (Method m : methods) parsedMethodList.add(new ParsedMethod(m));
-      // for (ParsedMethod m : parsedMethodList) System.out.println(m.toHpp() + '\t' + m.toCpp(cppClassName));
 
       hppContent = toHpp().replace("String ", "std::string ").replace("Boolean", "bool");
       cppContent = toCpp().replace("String ", "std::string ").replace("Boolean", "bool");
       mainCppContent = "#include \"" + cppClassName + ".hpp\"\n\nint main() {\n\treturn EXIT_SUCCESS;\n}";
-
-      System.out.println(hppContent + "\n\n" + cppContent);
    }
+
 
    public String toHpp() {
       StringBuilder hpp = new StringBuilder();
@@ -118,9 +113,6 @@ public class Converter {
       return cpp.toString();
    }
 
-   // TODO Méthode de conversion
-   // TODO Méthode d'écriture ?
-
    /**
     * Ecrit hppContent dans le fichier .hpp et cppContent dans le .cpp
     */
@@ -142,28 +134,4 @@ public class Converter {
          System.out.println(e.getMessage());
       }
    }
-
-   @Override
-   public String toString() {
-      return "--- HPP --\n" + hppContent + "\n\n" + "--- CPP ---\n" + cppContent;
-   }
-
-   /**
-    * Remplace toutes les occurences de la classe "String" par "std::string" dans
-    * le contenu de hppContent et cppContent
-    */
-   public void stringReplace() {
-
-      // TODO
-   }
-
-   /**
-    * Remplace toutes les occurences de la classe "Boolean" par "bool" dans
-    * le contenu de hppContent et cppContent
-    */
-    public void boolReplace() {
-
-      // TODO
-   }
-
 }
