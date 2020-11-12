@@ -43,10 +43,31 @@ public class BddTest {
       // }
    }
 
+   
    @Test
-   public void testOpenDb() {
+   public void testConnect() {
       // TODO: Test creation
       // TODO: Test initialisation
+   }
+   
+   @Test
+   public void testInitDatabase() {
+      
+   }
+   
+   @Test
+   public void testInsertMesure() {
+      
+   }
+
+   @Test
+   public void testGetAllMesures() {
+
+   }
+
+   @Test
+   public void testCleanDatabase() {
+
    }
 
 

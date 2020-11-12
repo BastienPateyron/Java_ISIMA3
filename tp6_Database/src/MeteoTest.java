@@ -1,7 +1,10 @@
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.google.gson.Gson;
@@ -63,11 +66,27 @@ public class MeteoTest {
    }
 
    @Test
-   @Disabled
-   /** Disabled because the request method was refactored and don't return a String anymore */
    public void requestTest() {
-      assertEquals(maMeteo.request("uneVilleImaginaire"), "{\"cod\":\"404\",\"message\":\"city not found\"}", "Doit retourner une erreur 404 car la ville n'existe pas");
+      try {
+         assertNotNull(maMeteo.request("Guéret"), "Should return non null object which is a successfull call");
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+         System.out.println("Unexpected exception occured during the test");
+         assert(false);
+      } catch (IOException e) {
+         e.printStackTrace();
+         System.out.println("Unexpected exception occured during the test");
+         assert(false);
+      }
+      try {
+         maMeteo.request("uneVilleImaginaire");
+         assert(false);
+      } catch (FileNotFoundException e) {
+         assertEquals("{\"cod\":\"404\",\"message\":\"city not found\"}", e.getMessage(), "Should return a 404 error");
+      } catch (IOException e) {
+         e.printStackTrace();
+         System.out.println("Unexpected exception occured during the test");
+         assert(false);
+      }
    }
-
-
 }
