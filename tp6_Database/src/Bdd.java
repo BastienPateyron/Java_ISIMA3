@@ -33,11 +33,15 @@ public class Bdd {
     */
    private void initDatabase(String dbName) {
       // String initQuery = "CREATE DATABASE IF NOT EXISTS" + dbName.split(".")[0] + "CREATE USER 'user1' IDENTIFIED BY 'pass'; GRANT ALL on myDb.* TO 'user1'";
-      String initQuery = "CREATE TABLE IF NOT EXISTS Mesures (id INTEGER PRIMARY KEY AUTOINCREMENT, ville TEXT, humidity REAL, temp REAL, temp_max REAL, temp_min REAL);";
+      String initQuery = "CREATE TABLE IF NOT EXISTS Mesures (id INTEGER PRIMARY KEY AUTOINCREMENT, ville TEXT, humidity REAL, temp REAL, temp_max REAL, temp_min REAL, date INTEGER);";
       
       try {
          Statement st = connection.createStatement(); 
          st.execute(initQuery);
+
+         // TODO: Appel de la fonction clean database
+         int nbCleaned = cleanDatabase();
+         System.out.println(nbCleaned + " entrées supprimées.");
       } catch (SQLException e) {
          e.printStackTrace();
       }
@@ -48,12 +52,13 @@ public class Bdd {
     */
    public void insertMesure(Mesure maMesure) {
       StringBuilder query = new StringBuilder();
-      query.append("INSERT INTO Mesures (ville, humidity, temp, temp_max, temp_min) VALUES(\"");
+      query.append("INSERT INTO Mesures (ville, humidity, temp, temp_max, temp_min, date) VALUES(\"");
       query.append(maMesure.name + "\", ");
       query.append(maMesure.main.humidity + ", ");
       query.append(maMesure.main.temp + ", ");
       query.append(maMesure.main.temp_max + ", ");
-      query.append(maMesure.main.temp_min + ");");
+      query.append(maMesure.main.temp_min + ", ");
+      query.append("STRFTIME('%s'));");
 
       try {
          Statement st = connection.createStatement();
@@ -89,5 +94,25 @@ public class Bdd {
       }
 
       return mesureList;
+   }
+
+   /**
+    * Supprime les entrées en base qui datent de plus de 24 h.
+    * @return Le nombre de lignes supprimées.
+    */
+   int cleanDatabase() {
+      int nbCleaned = 0;
+      
+      // On supprime les mesures qui datent de plus d'un jour (86400 secondes)
+      String query = "DELETE FROM Mesures WHERE STRFTIME('%s') - date > 86400;";
+      
+      try {
+         Statement st = connection.createStatement();
+         nbCleaned = st.executeUpdate(query);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      return nbCleaned;
    }
 }

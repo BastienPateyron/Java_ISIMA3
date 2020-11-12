@@ -3,9 +3,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class Meteo {
@@ -33,6 +35,7 @@ public class Meteo {
          // System.out.println(response);
          if (urlConnection.getResponseCode() == 404) {
             response = readStream(urlConnection.getErrorStream());
+            // throw new HttpException(404, "city not found");
             // return response; 
             System.out.println(response);            
          } else {
