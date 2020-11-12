@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,35 +21,27 @@ public class Meteo {
     * @param ville Nom de la ville ciblée par la requête
     * @return toString de la réponse parsée de l'API
     */
-   public Mesure request(String ville) {
+   public Mesure request(String ville) throws IOException, FileNotFoundException {
 
       String response = "";
       Mesure maMesure = null;
 
       HttpURLConnection urlConnection = null;
-      try {
-         URL url = new URL(
-               "http://api.openweathermap.org/data/2.5/weather?q=" + 
-               ville +
-               "&units=metric&appid=fdec5664d19caf22895d3aaf207d3d43");
-         urlConnection = (HttpURLConnection) url.openConnection();
-         // System.out.println(response);
-         if (urlConnection.getResponseCode() == 404) {
-            response = readStream(urlConnection.getErrorStream());
-            // throw new HttpException(404, "city not found");
-            // return response; 
-            System.out.println(response);            
-         } else {
-            response = readStream(urlConnection.getInputStream());
-            maMesure = gson.fromJson(response, Mesure.class);
-         }
+      URL url = new URL(
+            "http://api.openweathermap.org/data/2.5/weather?q=" + 
+            ville +
+            "&units=metric&appid=fdec5664d19caf22895d3aaf207d3d43");
+      urlConnection = (HttpURLConnection) url.openConnection();
 
-      } catch (IOException e) {
-         System.out.println("Erreur dans la requete: " + e.getMessage());
-      } finally {
-         if (urlConnection != null) {
-            urlConnection.disconnect();
-         }
+      if (urlConnection.getResponseCode() == 404) {
+         throw new FileNotFoundException(readStream(urlConnection.getErrorStream()));
+      } else {
+         response = readStream(urlConnection.getInputStream());
+         maMesure = gson.fromJson(response, Mesure.class);
+      }
+      
+      if (urlConnection != null) {
+         urlConnection.disconnect();
       }
 
       return maMesure;
@@ -57,7 +50,7 @@ public class Meteo {
    /**
     * Surcharge qui passe Clermont-Ferrand par défaut
     */
-   public Mesure request() {
+   public Mesure request() throws IOException, FileNotFoundException {
       return request("Clermont-Ferrand");
    }
 
