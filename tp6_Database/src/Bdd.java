@@ -32,14 +32,14 @@ public class Bdd {
     * Initialise la base de données en créant les tables si elles n'existent pas
     */
    private void initDatabase(String dbName) {
-      // String initQuery = "CREATE DATABASE IF NOT EXISTS" + dbName.split(".")[0] + "CREATE USER 'user1' IDENTIFIED BY 'pass'; GRANT ALL on myDb.* TO 'user1'";
       String initQuery = "CREATE TABLE IF NOT EXISTS Mesures (id INTEGER PRIMARY KEY AUTOINCREMENT, ville TEXT, humidity REAL, temp REAL, temp_max REAL, temp_min REAL, date INTEGER);";
       
       try {
+         // Initialisation de la BDD
          Statement st = connection.createStatement(); 
          st.execute(initQuery);
 
-         // TODO: Appel de la fonction clean database
+         // Suppression des données périmées
          int nbCleaned = cleanDatabase();
          System.out.println(nbCleaned + " entrées supprimées.");
       } catch (SQLException e) {
