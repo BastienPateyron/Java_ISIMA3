@@ -9,8 +9,8 @@ public class App {
         String ville = args.length == 1 ? args[0] : "Clermont-Ferrand";
 
         try {
-            // Mesure maMesure = maMeteo.request(ville);
-            Mesure maMesure = maMeteo.request("uneVilleImaginaire");
+            Mesure maMesure = maMeteo.request(ville);
+            // Mesure maMesure = maMeteo.request("uneVilleImaginaire");
             db.insertMesure(maMesure);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

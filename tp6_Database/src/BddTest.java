@@ -1,11 +1,7 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,34 +9,38 @@ import org.junit.jupiter.api.Test;
 
 public class BddTest {
 
-   // static private String filename = "response.json";
-   // static private File responseMockingFile = null;
-   // static private FileInputStream mockFileInputStream = null;
-   // private Meteo maMeteo = null;
-   // final Gson gson = new GsonBuilder().setLenient().create();
+   private String mockDbFileName = "mockDatabase.sqlite";
+   private String originalFileName = "databaseBackup.sqlite";
+   private Bdd db;
 
    @BeforeEach
    public void setUp() {
-      // try {
-      //    responseMockingFile = new File(filename);
-      //    mockFileInputStream = new FileInputStream(responseMockingFile);
-      //    System.out.println(mockFileInputStream);
-      //    maMeteo = new Meteo();
-      // } catch (IOException e) {
-      //    System.out.println(e.getMessage());
-      //    assert(false);
-      // }
+      
+      Path original = Paths.get(originalFileName);
+      Path copy = Paths.get(mockDbFileName);
+      try {
+         // Copy the backup file to a mock database file
+         Files.copy(original, copy, StandardCopyOption.REPLACE_EXISTING);   
+      } catch (Exception e) {
+         e.printStackTrace();
+         assert(false);
+      }
+
+      db = new Bdd(mockDbFileName);    // Open the mock database
    }
 
    @AfterEach
    public void tearDown() {
-      // try {
-      //    mockFileInputStream.close();
-      //    maMeteo = null;
-      // } catch (IOException e) {
-      //    System.out.println(e.getMessage());
-      //    assert(false);
-      // }
+      
+      db.close();                      // Close the database
+      db = null;                       // Set the database object to null
+      
+      Path fileToDelete = Paths.get(mockDbFileName);
+      try {
+         Files.delete(fileToDelete);   // Remove the copy
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
    }
 
    

@@ -3,16 +3,27 @@ import java.util.ArrayList;
 
 public class Bdd {
    
+   String dbName;
    public Connection connection;
 
    public Bdd() {
-      connect("database.sqlite");
-      initDatabase("database.sqlite");
+      this.dbName = "database.sqlite";
+      connect(dbName);
+      initDatabase(dbName);
    }
 
    public Bdd(String dbName) {
+      this.dbName = dbName;
       connect(dbName);
       initDatabase(dbName);
+   }
+
+   /**
+    * Surcharge pour tester le méthodes appelées dans les autres constructeurs
+    * @param testing
+    */
+   public Bdd(String dbName, Boolean testing) {
+      this.dbName = dbName;
    }
 
    /**
@@ -100,7 +111,7 @@ public class Bdd {
     * Supprime les entrées en base qui datent de plus de 24 h.
     * @return Le nombre de lignes supprimées.
     */
-   int cleanDatabase() {
+   public int cleanDatabase() {
       int nbCleaned = 0;
       
       // On supprime les mesures qui datent de plus d'un jour (86400 secondes)
@@ -114,5 +125,14 @@ public class Bdd {
       }
 
       return nbCleaned;
+   }
+
+   public void close() {
+      try {
+         connection.close();
+         connection = null;
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
    }
 }
