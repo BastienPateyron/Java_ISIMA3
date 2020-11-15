@@ -29,7 +29,7 @@ public class Bdd {
    /**
     * Etablit la connexion avec la base de données
     */
-   private void connect(String dbName) {
+   public void connect(String dbName) {
       try {
          // Class.forName("com.sqlite.jdbc.Driver");
          Class.forName("org.sqlite.JDBC");
@@ -42,7 +42,7 @@ public class Bdd {
    /**
     * Initialise la base de données en créant les tables si elles n'existent pas
     */
-   private void initDatabase(String dbName) {
+   public void initDatabase(String dbName) {
       String initQuery = "CREATE TABLE IF NOT EXISTS Mesures (id INTEGER PRIMARY KEY AUTOINCREMENT, ville TEXT, humidity REAL, temp REAL, temp_max REAL, temp_min REAL, date INTEGER);";
       
       try {

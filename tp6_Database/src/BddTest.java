@@ -1,11 +1,17 @@
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.sqlite.SQLiteException;
 
 public class BddTest {
 
@@ -46,12 +52,50 @@ public class BddTest {
    
    @Test
    public void testConnect() {
-      // TODO: Test creation
-      // TODO: Test initialisation
+      Bdd testDb = new Bdd(mockDbFileName, true);
+      assert(mockDbFileName.equals(testDb.dbName));
+
+      testDb.connect(mockDbFileName);
+      assertNotNull(testDb.connection);
    }
    
    @Test
    public void testInitDatabase() {
+      String resetQuery = "DROP TABLE IF EXISTS Mesures;";
+      String testTableExistsQuery = "SELECT * FROM Mesures;";
+      Statement st;
+
+      // Vide la base
+      try {
+         st = db.connection.createStatement();
+         st.executeUpdate(resetQuery);
+      } catch (SQLException e) {
+         System.out.println(e);
+         assert(false);
+      }
+      
+      // Vérifie que la base est bien vide
+      try {
+         st = db.connection.createStatement();
+         st.executeQuery(testTableExistsQuery);
+         assert(false); // Ne doit pas arriver jusqu'ici
+      } catch (SQLException e) {
+         System.out.println(e);
+         assert(e instanceof SQLiteException);
+         assert(e.getMessage().contains("no such table: Mesures"));
+      } 
+      
+      db.initDatabase(db.dbName);
+      
+      try {
+         st = db.connection.createStatement();
+         st.executeQuery(testTableExistsQuery);
+         assert(true);     // La table a bien été créee
+      } catch (SQLException e) {
+         System.out.println(e);
+         assert(false);
+      }
+
       
    }
    
