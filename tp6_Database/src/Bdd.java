@@ -113,7 +113,8 @@ public class Bdd {
             mesureList.add(readMesure(rs));
          }
       } catch (Exception e) {
-         e.printStackTrace();
+         // e.printStackTrace();
+         System.out.println(e.getMessage());
       }
 
       return mesureList;
@@ -144,7 +145,8 @@ public class Bdd {
          connection.close();
          connection = null;
       } catch (Exception e) {
-         e.printStackTrace();
+         // e.printStackTrace();
+         System.out.println(e.getMessage());
       }
    }
 }

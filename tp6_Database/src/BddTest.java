@@ -7,8 +7,8 @@ import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -17,8 +17,8 @@ import org.sqlite.SQLiteException;
 
 public class BddTest {
 
-   private String mockDbFileName = "mockDatabase.sqlite";
    private String originalFileName = "databaseBackup.sqlite";
+   private String mockDbFileName = "mockDatabase.sqlite";
    private Bdd db;
 
    @BeforeEach
@@ -102,14 +102,14 @@ public class BddTest {
 
    @Test
    public void testReadMesures() {
-      String content = "Arrondissement de Clermont-Ferrand: humidity=71.0, temp=10.0, temp_max=10.0, temp_min=10.0";
+      String content = "Arrondissement de Clermont-Ferrand: humidity=71.0, temp=10.0, temp_max=12.0, temp_min=8.0";
       String query = "SELECT * FROM Mesures WHERE ID = (SELECT MAX(ID) FROM Mesures);";
       String insert = "INSERT INTO Mesures (ville, humidity, temp, temp_max, temp_min, date) VALUES(\"Arrondissement de Clermont-Ferrand\", 71.0, 10.0, 12.0, 8.0, STRFTIME('%s'));";
       Mesure mesureLue = null;
       
       try {
          Statement st = db.connection.createStatement();
-         st.executeQuery(insert);
+         st.executeUpdate(insert);
          ResultSet rs = st.executeQuery(query);
          
          while(rs.next()) {
@@ -147,13 +147,93 @@ public class BddTest {
    }
 
    @Test
+   @Disabled
+   /**
+    * Not working Yet. 
+    * The database test file is not properly recreated between each test
+    */
    public void testGetAllMesures() {
-
+      ArrayList<Mesure> mesureList = new ArrayList<>();
+      mesureList.add(new Mesure("Paris", 10.0, 12.0, 8.0, 71.0));
+      mesureList.add(new Mesure("Paris", 5.0, 10.0, 3.0, 71.0));
+      mesureList.add(new Mesure("Marseille", -1.0, 3.0, -3.0, 71.0));
+      mesureList.add(new Mesure("Marseille", 28.0, 31.0, 13.0, 71.0));
+      mesureList.add(new Mesure("Lyon", 15.0, 20.0, 8.0, 71.0));
+      mesureList.add(new Mesure("Paris", 20.0, 25.0, 8.0, 71.0));
+      mesureList.add(new Mesure("Marseille", 19.0, 22.0, 9.0, 71.0));
+      mesureList.add(new Mesure("Lyon", 1.0, 12.0, -3.0, 71.0));
+      
+      ArrayList<Mesure> sortedList = new ArrayList<>();
+      sortedList.add(new Mesure("Lyon", 15.0, 20.0, 8.0, 71.0));
+      sortedList.add(new Mesure("Lyon", 1.0, 12.0, -3.0, 71.0));
+      sortedList.add(new Mesure("Marseille", 28.0, 31.0, 13.0, 71.0));
+      sortedList.add(new Mesure("Marseille", 19.0, 22.0, 9.0, 71.0));
+      sortedList.add(new Mesure("Marseille", -1.0, 3.0, -3.0, 71.0));
+      sortedList.add(new Mesure("Paris", 20.0, 25.0, 8.0, 71.0));
+      sortedList.add(new Mesure("Paris", 10.0, 12.0, 8.0, 71.0));
+      sortedList.add(new Mesure("Paris", 5.0, 10.0, 3.0, 71.0));
+      
+      // Loop insertion
+      for(Mesure m : mesureList) db.insertMesure(m);
+      
+      ArrayList<Mesure> retrievedList = db.getAllMesures();
+      
+      System.out.println("Measure Sorted: " + sortedList.size() + "\tMeasure Retrieved: " + retrievedList.size()); 
+      for(int i = 0; i < retrievedList.size(); i++){
+         System.out.println(i + " " + sortedList.get(i).toString());
+         System.out.println(i + " " + retrievedList.get(i).toString());
+         assert(sortedList.get(i).toString().equals(retrievedList.get(i).toString()));
+      }
    }
-
+   
    @Test
+   @Disabled
+   /**
+    * Not working Yet. 
+    * The database test file is not properly recreated between each test
+    */
    public void testCleanDatabase() {
+      try {
+         db = new Bdd(mockDbFileName, false); // Cette base doit déjà contenir des données (périmées)
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         assert(false);
+      }
 
+      String queryInitialDb = "SELECT * FROM mesures GROUP BY id;";
+      try {
+         Statement st = db.connection.createStatement();
+         ResultSet rs = st.executeQuery(queryInitialDb);
+         rs.next();
+         int size = 0;
+         rs.getInt(size);
+         assert(10 == size);
+      } catch (Exception e) {
+         e.printStackTrace();
+         assert(false);
+      }
+
+      // Insérer nouvelle ligne à l'instant qui sera donc valide au moment de l'affichage
+      Mesure maMesure = new Mesure("Clermont-Ferrand", 9.0, 13.0, 5.0, 71.0);
+      db.insertMesure(maMesure);
+      db.cleanDatabase(); // Nettoie la bdd
+
+      // Vérifier que c'est la seule de la bdd
+      try {
+         Statement st = db.connection.createStatement();
+         ResultSet rs = st.executeQuery(queryInitialDb);
+         rs.next();
+         int size = 0;
+         rs.getInt(size);
+         assert(1 == size);
+         String queryCleanedCheck = "SELECT * FROM Mesures WHERE ID = (SELECT MAX(ID) FROM Mesures);";
+         rs = st.executeQuery(queryCleanedCheck);
+         Mesure mesureRestante = db.readMesure(rs);
+         assert(maMesure.toString().equals(mesureRestante.toString()));
+      } catch (Exception e) {
+         e.printStackTrace();
+         assert(false);
+      }
    }
 
 
