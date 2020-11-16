@@ -81,6 +81,24 @@ public class Bdd {
    }
 
    /**
+    * Crée une Mesure à partir d'un ResultSet retourné par la Bdd
+    */
+   public Mesure readMesure(ResultSet rs) {
+      Mesure m = null;
+      try {
+         m = new Mesure(
+         rs.getString(2),
+         rs.getDouble(4),
+         rs.getDouble(5),
+         rs.getDouble(6),
+         rs.getDouble(3));
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return m;
+   }
+
+   /**
     * Récupère l'ensemble des mesures présentes en base
     * @return Collection d'objets Mesures parsés depuis le résultat de la requête
     */
@@ -92,13 +110,7 @@ public class Bdd {
          Statement st = connection.createStatement();
          ResultSet rs = st.executeQuery(query);
          while (rs.next()) {
-            mesureList.add(new Mesure(
-               rs.getString(2),
-               rs.getDouble(4),
-               rs.getDouble(5),
-               rs.getDouble(6),
-               rs.getDouble(3)
-            ));
+            mesureList.add(readMesure(rs));
          }
       } catch (Exception e) {
          e.printStackTrace();
