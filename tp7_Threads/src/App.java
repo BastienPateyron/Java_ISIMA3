@@ -1,20 +1,9 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Etudiant monEtudiant = new Etudiant();
-        System.out.println(monEtudiant);
-        
-        ArrayList<Etudiant> etudiants = new ArrayList<>();
-        int nombreEtudiants = 150000;
-        for(int i = 0; i < nombreEtudiants; i++) {
-            Etudiant e = new Etudiant();
-            etudiants.add(e);
-            // System.out.println(e);
-        }
-
-
+        System.out.println("Il faut lancer les tests de la classe 'EtudiantTest.java'. Pour voir le temps d'exécution de chaque test. Si besoin, l'affichage de la durée est disponible en output");        
     }
 }

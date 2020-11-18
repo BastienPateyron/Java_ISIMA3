@@ -29,7 +29,7 @@ public class Etudiant {
    }
 
    public static int rangedInt(int min, int max) {
-      Random random = new Random(); // 1 ?
+      Random random = new Random();
       return random.nextInt(max - min) + min;
    }
 
