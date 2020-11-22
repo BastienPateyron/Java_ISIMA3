@@ -17,11 +17,10 @@ public class CreationEtudiant implements Runnable {
          synchronized (liste) {
             liste.add(new Etudiant());
          }
-         try {
-            Thread.sleep(0, 1); // 0 Miliseconds + 1 nanosecond
-         } catch (Exception exception) {
-            exception.printStackTrace();
-         }
+
+         // Attends 10 ms pour chaque création
+         long start = System.nanoTime();
+         while(System.nanoTime() - start < 10000);
       }
    }
 }

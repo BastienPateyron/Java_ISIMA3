@@ -2,40 +2,49 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class EtudiantTest {
    
-   private int nombreEtudiants = 150000;
+   private int iterations = 10;
 
    @Test
    public void testSingleThread() {
-      Instant debut = Instant.now();
-      ArrayList<Etudiant> etudiants = new ArrayList<>();
 
-      CreationEtudiant c1 = new CreationEtudiant(150000, etudiants);
+      double avg = 0;
 
-      try {
-         c1.monThread.join();
+      for(int i = 0; i < iterations; i++) {
+         Instant debut = Instant.now();
+         ArrayList<Etudiant> etudiants = new ArrayList<>();
+   
+         CreationEtudiant c1 = new CreationEtudiant(150000, etudiants);
+   
+         try {
+            c1.monThread.join();
+   
+         } catch (Exception e) {
+            e.printStackTrace();
+         }
+   
+         Instant fin = Instant.now();
+         
+         long duree = Duration.between(debut, fin).toMillis(); 
 
-      } catch (Exception e) {
-         e.printStackTrace();
+         avg += duree;
       }
 
-      Instant fin = Instant.now();
-      
-      // for(Etudiant e : etudiants) System.out.println(e);
-
-      long duree = Duration.between(debut, fin).toMillis(); 
-      System.out.println("SingleThread: " + (double) duree / 1000 + "s");
+      avg = (double) (avg / iterations) / 1000;
+      System.out.println("SingleThread average time:\t" + avg + "s");
    }
    
    @Test
    public void testMultiThread() {
       ArrayList<Etudiant> etudiants = new ArrayList<>();
-      
-      Instant debut = Instant.now();
+
+      double avg = 0;
+
+      for(int i = 0; i < iterations; i++) {
+         Instant debut = Instant.now();
       
       CreationEtudiant c1 = new CreationEtudiant(50000, etudiants);
       CreationEtudiant c2 = new CreationEtudiant(50000, etudiants);
@@ -50,11 +59,12 @@ public class EtudiantTest {
       }
       
       Instant fin = Instant.now();
-      
-      // for(Etudiant e : etudiants) System.out.println(e);
-
       long duree = Duration.between(debut, fin).toMillis(); 
-      System.out.println("MultiThread: " + (double) duree / 1000 + "s");
+      avg += duree;
+      }
+
+      avg = (double) (avg / iterations) / 1000;
+      System.out.println("MultiThread average time:\t" + avg + "s");
    }
    
 
