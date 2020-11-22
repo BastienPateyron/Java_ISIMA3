@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56e56c4f-e76a-4ae2-8e5f-3b1ff1b4764f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cours.md" beforeDir="false" afterPath="$PROJECT_DIR$/Cours.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ClassParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ClassParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ParsedField.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ParsedField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ParsedMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ParsedMethod.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1k0cwwhj9ZoJ09HmXn8sA0RTCU3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56e56c4f-e76a-4ae2-8e5f-3b1ff1b4764f" name="Default Changelist" comment="" />
+      <created>1604841192805</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604841192805</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="388" y="150" key="new project wizard" timestamp="1604999995178">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="388" y="150" key="new project wizard/0.1080.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1604999995178" />
+  </component>
+</project>
