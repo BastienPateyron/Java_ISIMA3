@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56e56c4f-e76a-4ae2-8e5f-3b1ff1b4764f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cours.md" beforeDir="false" afterPath="$PROJECT_DIR$/Cours.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ClassParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ClassParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ParsedField.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ParsedField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp5_Introspection/src/ParsedMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp5_Introspection/src/ParsedMethod.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
