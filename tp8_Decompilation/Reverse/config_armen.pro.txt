@@ -1,0 +1,6 @@
+-libraryjars  <java.home>/jmods/java.base.jmod(!**.jar;!module-info.class)
+-printmapping build/libs/obfuscated/proguard.map
+-dontwarn
+-keep public class Main {
+    public static void main(java.lang.String[]);
+}
